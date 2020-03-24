@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liang.hotelreservation.mapper.HotelMapper">
+  <resultMap id="BaseResultMap" type="com.liang.hotelreservation.dto.HotelDTO">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <resultMap id="hotelListResult" type="com.liang.hotelreservation.dto.HotelListDTO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <select id="list" resultMap="hotelListResult"  >
+    select h.*,hs.* from hotel as h ,hotel_sku as hs where name = #{name}
+  </select>
+</mapper>

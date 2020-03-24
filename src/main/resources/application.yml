@@ -1,0 +1,30 @@
+server:
+  port: 9800
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  application:
+    name: hotelSystem
+  datasource:
+    url: jdbc:mysql://106.54.136.127:3306/hotel?useUnicode=true&characterEncoding=UTF-8
+    username: test
+    password: petStore1!
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password:
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
