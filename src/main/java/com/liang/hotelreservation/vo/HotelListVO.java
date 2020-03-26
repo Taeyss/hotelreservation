@@ -18,6 +18,8 @@ public class HotelListVO
 
 	private String desc;
 
+	private HotelSKUVO firstSKU;
+
 	public Integer getId() {
 		return id;
 	}
@@ -73,4 +75,8 @@ public class HotelListVO
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+
+	public HotelSKUVO getFirstSKU() { return  firstSKU; }
+
+	public void setFirstSKU(HotelSKUVO firstSKU) { this.firstSKU = firstSKU; }
 }
