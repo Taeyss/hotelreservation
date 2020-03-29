@@ -8,5 +8,6 @@ import java.util.List;
 public interface HotelSKUMapper extends Mapper<HotelSKUDTO> {
 
     List<HotelSKUDTO> hotelskulist(Integer hotelid);
+    HotelSKUDTO skuinfo(Integer skuid);
 
 }

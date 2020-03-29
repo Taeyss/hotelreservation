@@ -10,8 +10,19 @@
         <result column="userid" jdbcType="INTEGER" property="userid" />
         <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
         <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+        <result column="hotel_skuid" jdbcType="INTEGER" property="hotelskuid" />
+        <result column="price" javaType="decimal" property="price" />
+        <result column="name" jdbcType="VARCHAR" property="hotelname" />
+        <result column="image_url" jdbcType="VARCHAR" property="imageUrl"/>
+        <result column="address" jdbcType="VARCHAR" property="hotelAddress"/>
+        <result column="desc" jdbcType="VARCHAR" property="hotelDesc"/>
+        <result column="longitude" jdbcType="VARCHAR" property="longitude"/>
+        <result column="latitude" jdbcType="VARCHAR" property="latitude"/>
     </resultMap>
     <select id="reservation" resultMap="BaseResultMap">
-        INSERT INTO  hotel_order (`hotel_id`, `start_date`, `end_date`, `userid`) VALUES (#{hotelid}, #{startDate},#{endDate}, #{userid})
+        INSERT INTO  hotel_order (`hotel_id`, `start_date`, `end_date`, `userid`, `hotel_skuid`) VALUES (#{hotelid}, #{startDate},#{endDate}, #{userid}, #{hotelskuid})
   </select>
+    <select id="myreservation" resultMap="BaseResultMap">
+		select h.name,h.address,h.image_url,h.desc,h.longitude,h.latitude,hs.price,o.* from hotel_order as o,hotel as h,hotel_sku as hs where o.hotel_id=h.id and o.hotel_skuid=hs.id and o.userid = #{userid}
+	</select>
 </mapper>

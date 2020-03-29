@@ -2,12 +2,14 @@ package com.liang.hotelreservation.SendMsg;
 
 import com.liang.hotelreservation.dto.HotelDTO;
 import com.liang.hotelreservation.dto.HotelListDTO;
+import com.liang.hotelreservation.dto.HotelOrderDTO;
 import com.liang.hotelreservation.dto.HotelSKUDTO;
 import com.liang.hotelreservation.mapper.HotelMapper;
 import com.liang.hotelreservation.mapper.HotelOrderMapper;
 import com.liang.hotelreservation.mapper.HotelSKUMapper;
 import com.liang.hotelreservation.vo.HotelInfoVO;
 import com.liang.hotelreservation.vo.HotelListVO;
+import com.liang.hotelreservation.vo.HotelOrderVO;
 import com.liang.hotelreservation.vo.HotelSKUVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,5 +74,46 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public void reservationHotel(ReservationHotelParams params) {
 		hotelOrderMapper.reservation(params);
+	}
+
+	@Override
+	public List<HotelOrderVO> myreservation(BaseParams params) {
+		List<HotelOrderDTO> result = hotelOrderMapper.myreservation(params.getUserid());
+		List<HotelOrderVO> response = new ArrayList<>();
+		if (!CollectionUtils.isEmpty(result)) {
+			for (HotelOrderDTO item : result) {
+				HotelOrderVO order = new HotelOrderVO();
+				order.setPrice(item.getPrice());
+				order.setId(item.getId());
+				order.setUserid(item.getUserid());
+				order.setStartDate(item.getStartDate());
+				order.setEndDate(item.getEndDate());
+				order.setSkuid(item.getHotelskuid());
+				HotelListVO h = new HotelListVO();
+				h.setImageUrl(item.getImageUrl());
+				h.setAddress(item.getHotelAddress());
+				h.setName(item.getHotelname());
+				h.setDesc(item.getHotelDesc());
+				h.setPrice(item.getPrice());
+				h.setLongitude(item.getLongitude());
+				h.setLatitude(item.getLatitude());
+				order.setHotelinfo(h);
+				response.add(order);
+			}
+		}
+		return response;
+	}
+
+	@Override
+	public HotelSKUVO hotelsku(Integer skuid) {
+		HotelSKUDTO result = hotelSKUMapper.skuinfo(skuid);
+		HotelSKUVO sku = new HotelSKUVO();
+		sku.setTitle(result.getTitle());
+		sku.setPrice(result.getPrice());
+		sku.setMaxNumber(result.getMaxNumber());
+		sku.setId(result.getId());
+		sku.setHotelId(result.getHotelId());
+		sku.setImageUrl(result.getImageUrl());
+		return sku;
 	}
 }

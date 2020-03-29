@@ -14,6 +14,9 @@ public class HotelOrderDTO {
     @Column(name = "userid")
     private Integer userid;
 
+    @Column(name = "hotel_skuid")
+    private Integer hotelskuid;
+
     @Column(name = "hotel_id")
     private Integer hotelId;
 
@@ -22,6 +25,27 @@ public class HotelOrderDTO {
 
     @Column(name = "end_date")
     private Date endDate;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "name")
+    private String hotelname;
+
+    @Column(name = "address")
+    private String hotelAddress;
+
+    @Column(name = "desc")
+    private String hotelDesc;
+
+    @Column(name = "longitude")
+    private String longitude;
+
+    @Column(name = "latitude")
+    private String latitude;
 
     /**
      * @return id
@@ -35,6 +59,20 @@ public class HotelOrderDTO {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return hotelskuid
+     */
+    public Integer getHotelskuid() {
+        return hotelskuid;
+    }
+
+    /**
+     * @param hotelskuid
+     */
+    public void setHotelskuid(Integer hotelskuid) {
+        this.hotelskuid = hotelskuid;
     }
 
     /**
@@ -92,4 +130,32 @@ public class HotelOrderDTO {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public BigDecimal getPrice() { return  price; }
+
+    public void setPrice(BigDecimal price) { this.price = price; }
+
+    public String getImageUrl() { return  imageUrl; }
+
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public String getHotelname() { return  hotelname; }
+
+    public void setHotelname(String hotelname) { this.hotelname = hotelname; }
+
+    public String getHotelAddress() { return  hotelAddress; }
+
+    public void setHotelAddress(String hotelAddress) { this.hotelAddress = hotelAddress; }
+
+    public String getHotelDesc() { return  hotelDesc;}
+
+    public void  setHotelDesc(String hotelDesc) { this.hotelDesc = hotelDesc;}
+
+    public String getLatitude() { return  latitude;}
+
+    public void  setLatitude(String latitude) { this.latitude = latitude;}
+
+    public String getLongitude() { return  longitude;}
+
+    public void  setLongitude(String longitude) { this.longitude = longitude;}
 }

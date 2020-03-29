@@ -18,4 +18,7 @@
   <select id="hotelskulist" resultMap="BaseResultMap">
         select * from hotel_sku where hotel_id = #{hotelid}
   </select>
+  <select id="skuinfo" resultMap="BaseResultMap">
+          select * from hotel_sku where id = #{skuid}
+  </select>
 </mapper>

@@ -1,9 +1,11 @@
 package com.liang.hotelreservation;
 
+import com.liang.hotelreservation.SendMsg.BaseParams;
 import com.liang.hotelreservation.SendMsg.IHotelService;
 import com.liang.hotelreservation.SendMsg.ReservationHotelParams;
 import com.liang.hotelreservation.vo.HotelInfoVO;
 import com.liang.hotelreservation.vo.HotelListVO;
+import com.liang.hotelreservation.vo.HotelOrderVO;
 import com.liang.hotelreservation.vo.HotelSKUVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +45,15 @@ public class HotelController {
 	public String reservation(@RequestBody ReservationHotelParams params) {
 		service.reservationHotel(params);
 		return "";
+	}
+
+	@PostMapping("/myreservation")
+	public List<HotelOrderVO> myreservation(@RequestBody BaseParams params) {
+		return service.myreservation(params);
+	}
+
+	@PostMapping("/skuinfo")
+	public HotelSKUVO skuinfo(@RequestParam("skuid") Integer skuid){
+		return service.hotelsku(skuid);
 	}
 }
