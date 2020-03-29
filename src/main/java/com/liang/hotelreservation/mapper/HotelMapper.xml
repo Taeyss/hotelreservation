@@ -21,8 +21,9 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="price" javaType="decimal" property="price" />
   </resultMap>
   <select id="list" resultMap="hotelListResult"  >
-    select h.*,hs.* from hotel as h ,hotel_sku as hs where name = #{name}
+    select a.*,b.price from hotel a,(select price,hotel_id from hotel_sku group by hotel_sku.hotel_id order by create_time desc ) b where a.id = b.hotel_id;
   </select>
 </mapper>

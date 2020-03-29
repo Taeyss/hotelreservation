@@ -1,6 +1,7 @@
 package com.liang.hotelreservation.vo;
 
 import javax.persistence.Column;
+import java.math.BigDecimal;
 
 public class HotelListVO
 {
@@ -18,7 +19,7 @@ public class HotelListVO
 
 	private String desc;
 
-	private HotelSKUVO firstSKU;
+	private BigDecimal price;
 
 	public Integer getId() {
 		return id;
@@ -76,7 +77,7 @@ public class HotelListVO
 		this.desc = desc;
 	}
 
-	public HotelSKUVO getFirstSKU() { return  firstSKU; }
+	public BigDecimal getPrice() { return  price; }
 
-	public void setFirstSKU(HotelSKUVO firstSKU) { this.firstSKU = firstSKU; }
+	public void setPrice(BigDecimal price) { this.price = price; }
 }

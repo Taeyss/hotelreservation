@@ -1,7 +1,10 @@
 package com.liang.hotelreservation;
 
 import com.liang.hotelreservation.SendMsg.IHotelService;
+import com.liang.hotelreservation.SendMsg.ReservationHotelParams;
+import com.liang.hotelreservation.vo.HotelInfoVO;
 import com.liang.hotelreservation.vo.HotelListVO;
+import com.liang.hotelreservation.vo.HotelSKUVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/hotel")
@@ -20,13 +24,24 @@ public class HotelController {
 
 
 
+//	@PostMapping("/list")
+//	public List<HotelListVO> list(@RequestParam("name") String name) {
+//		return service.list(name);
+//	}
+
 	@PostMapping("/list")
-	public List<HotelListVO> list(@RequestParam("name") String name) {
-		return service.list(name);
+	public List<HotelListVO> list() {
+		return service.list();
 	}
 
-	@PostMapping("/list1")
-	public List<HotelListVO> list1(@RequestBody HotelListVO vo) {
-		return null;
+	@PostMapping("/hotelskulist")
+	public List<HotelSKUVO> hotelskulist(@RequestParam("hotelid") Integer hotelid) {
+		return service.hotelskulist(hotelid);
+	}
+
+	@PostMapping("/reservation")
+	public String reservation(@RequestBody ReservationHotelParams params) {
+		service.reservationHotel(params);
+		return "";
 	}
 }
