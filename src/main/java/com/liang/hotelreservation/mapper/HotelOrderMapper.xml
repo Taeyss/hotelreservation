@@ -12,6 +12,6 @@
         <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
     </resultMap>
     <select id="reservation" resultMap="BaseResultMap">
---         INSERT INTO  hotel_order (`hotel_id`, `start_date`, `end_date`, `userid`) VALUES (#{params.hotelid}, #{params.startDate},#{params.endDate}, #{params.userid})
+        INSERT INTO  hotel_order (`hotel_id`, `start_date`, `end_date`, `userid`) VALUES (#{hotelid}, #{startDate},#{endDate}, #{userid})
   </select>
 </mapper>
