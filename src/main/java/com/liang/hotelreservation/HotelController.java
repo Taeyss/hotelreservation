@@ -1,24 +1,16 @@
 package com.liang.hotelreservation;
 
-import com.liang.hotelreservation.SendMsg.BaseParams;
-import com.liang.hotelreservation.SendMsg.IHotelService;
-import com.liang.hotelreservation.SendMsg.ReservationHotelParams;
-import com.liang.hotelreservation.vo.HotelInfoVO;
-import com.liang.hotelreservation.vo.HotelListVO;
-import com.liang.hotelreservation.vo.HotelOrderVO;
-import com.liang.hotelreservation.vo.HotelSKUVO;
+import com.liang.hotelreservation.SendMsg.*;
+import com.liang.hotelreservation.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/hotel")
+@CrossOrigin("http://localhost:8081")
 public class HotelController {
 
 	@Autowired
@@ -55,5 +47,27 @@ public class HotelController {
 	@PostMapping("/skuinfo")
 	public HotelSKUVO skuinfo(@RequestParam("skuid") Integer skuid){
 		return service.hotelsku(skuid);
+	}
+
+	@PostMapping("/login")
+	public UserInfoVO login(@RequestBody LoginParams params) {
+		return service.login(params);
+	}
+
+	@PostMapping("/addhotel")
+	public Integer addhotel(@RequestBody AddHotelParams params) {
+		return service.addhotel(params);
+	}
+
+	@PostMapping("/deletehotel")
+	public String deletehotel(@RequestParam("hotelid") Integer hotelid) {
+		service.deletehotel(hotelid);
+		return "";
+	}
+
+	@PostMapping("/updatehotel")
+	public String updatehotel(@RequestBody AddHotelParams params) {
+		service.updatehotel(params);
+		return "";
 	}
 }

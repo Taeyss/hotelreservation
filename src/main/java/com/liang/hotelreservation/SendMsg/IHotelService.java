@@ -1,9 +1,6 @@
 package com.liang.hotelreservation.SendMsg;
 
-import com.liang.hotelreservation.vo.HotelInfoVO;
-import com.liang.hotelreservation.vo.HotelListVO;
-import com.liang.hotelreservation.vo.HotelOrderVO;
-import com.liang.hotelreservation.vo.HotelSKUVO;
+import com.liang.hotelreservation.vo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +16,12 @@ public interface IHotelService {
 	void reservationHotel(ReservationHotelParams params);
 
 	List<HotelOrderVO> myreservation(BaseParams params);
+
+	UserInfoVO login(LoginParams params);
+
+	Integer addhotel(AddHotelParams params);
+
+	void deletehotel(Integer hotelid);
+
+	void updatehotel(AddHotelParams params);
 }

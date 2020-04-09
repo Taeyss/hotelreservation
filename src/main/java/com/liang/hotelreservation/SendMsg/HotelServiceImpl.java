@@ -1,16 +1,11 @@
 package com.liang.hotelreservation.SendMsg;
 
-import com.liang.hotelreservation.dto.HotelDTO;
-import com.liang.hotelreservation.dto.HotelListDTO;
-import com.liang.hotelreservation.dto.HotelOrderDTO;
-import com.liang.hotelreservation.dto.HotelSKUDTO;
+import com.liang.hotelreservation.dto.*;
 import com.liang.hotelreservation.mapper.HotelMapper;
 import com.liang.hotelreservation.mapper.HotelOrderMapper;
 import com.liang.hotelreservation.mapper.HotelSKUMapper;
-import com.liang.hotelreservation.vo.HotelInfoVO;
-import com.liang.hotelreservation.vo.HotelListVO;
-import com.liang.hotelreservation.vo.HotelOrderVO;
-import com.liang.hotelreservation.vo.HotelSKUVO;
+import com.liang.hotelreservation.mapper.UserMapper;
+import com.liang.hotelreservation.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -30,6 +25,8 @@ public class HotelServiceImpl implements IHotelService {
 	private HotelSKUMapper hotelSKUMapper;
 	@Autowired
 	private HotelOrderMapper hotelOrderMapper;
+	@Autowired
+	private UserMapper userMapper;
 
 	@Override
 	public List<HotelListVO> list() {
@@ -50,6 +47,30 @@ public class HotelServiceImpl implements IHotelService {
 			}
 		}
 		return response;
+	}
+
+	@Override
+	public Integer addhotel(AddHotelParams params) {
+		//先新增酒店
+		Integer result = hotelMapper.addhotel(params);
+		//新增酒店下的sku
+		hotelSKUMapper.addhotelskus(params.getSkus(), params.getId());
+		return params.getId();
+	}
+
+	@Override
+	public void updatehotel(AddHotelParams params) {
+		//先更新酒店基础信息
+		hotelMapper.updatehotel(params);
+		//删除原酒店下的sku
+		hotelSKUMapper.deletehotelskus(params.getId());
+		//新增sku
+		hotelSKUMapper.addhotelskus(params.getSkus(), params.getId());
+	}
+
+	@Override
+	public void deletehotel(Integer hotelid) {
+		hotelMapper.deletehotel(hotelid);
 	}
 
 	@Override
@@ -115,5 +136,15 @@ public class HotelServiceImpl implements IHotelService {
 		sku.setHotelId(result.getHotelId());
 		sku.setImageUrl(result.getImageUrl());
 		return sku;
+	}
+
+	@Override
+	public UserInfoVO login(LoginParams params) {
+		UserDTO userDTO = userMapper.login(params);
+		UserInfoVO userInfoVO = new UserInfoVO();
+		userInfoVO.setPhone(userDTO.getPhone());
+		userInfoVO.setName(userDTO.getName());
+		userInfoVO.setUid(userDTO.getUid());
+		return userInfoVO;
 	}
 }

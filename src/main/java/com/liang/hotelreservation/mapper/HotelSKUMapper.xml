@@ -21,4 +21,13 @@
   <select id="skuinfo" resultMap="BaseResultMap">
           select * from hotel_sku where id = #{skuid}
   </select>
+  <select id="addhotelskus" resultMap="BaseResultMap">
+INSERT	INTO hotel_sku (`title`, `price`, `image_url`, `max_number`, `hotel_id`) VALUES
+<foreach collection="skus" item="item" index="index" separator=",">
+  (#{item.title},#{item.price},#{item.imageUrl},#{item.maxNumber},#{hotelid})
+</foreach>
+  </select>
+  <delete id="deletehotelskus">
+        DELETE	FROM	hotel_sku	WHERE	hotel_id	= #{hotelid}
+  </delete>
 </mapper>

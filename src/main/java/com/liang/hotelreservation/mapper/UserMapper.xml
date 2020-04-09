@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liang.hotelreservation.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.liang.hotelreservation.dto.UserDTO">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="uid" jdbcType="INTEGER" property="uid" />
+    </resultMap>
+    <select id="login" resultMap="BaseResultMap">
+        SELECT * FROM	`user` WHERE `phone`	= #{account} and `password` = #{password}
+  </select>
+</mapper>

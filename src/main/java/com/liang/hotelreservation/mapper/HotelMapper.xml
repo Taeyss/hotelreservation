@@ -26,4 +26,13 @@
   <select id="list" resultMap="hotelListResult"  >
     select a.*,b.price from hotel a,(select price,hotel_id from hotel_sku group by hotel_sku.hotel_id order by create_time desc ) b where a.id = b.hotel_id;
   </select>
+  <insert id="addhotel" useGeneratedKeys="true" keyProperty="id">
+    INSERT	INTO	hotel	(`name`, `address`, `image_url`, `desc`) VALUES	( #{name},  #{address},  #{imageUrl}, #{desc});
+  </insert>
+  <delete id="deletehotel">
+    DELETE	FROM	hotel	WHERE	id	= #{hotelid}
+  </delete>
+  <update id="updatehotel">
+    UPDATE	hotel	set hotel.name = #{name}, hotel.address=#{address}, hotel.desc = #{desc}, hotel.image_url = #{imageUrl} WHERE	id = #{id}
+  </update>
 </mapper>
