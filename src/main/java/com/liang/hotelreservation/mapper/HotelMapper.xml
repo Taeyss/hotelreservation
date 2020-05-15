@@ -24,6 +24,9 @@
     from hotel a,(select price,hotel_id from hotel_sku group by hotel_sku.hotel_id order by create_time desc ) b where a.id = b.hotel_id HAVING
     <![CDATA[  distance < 50  ]]>
   </select>
+  <select id="hotelList" resultMap="hotelListResult">
+    select a.*,b.price from hotel a,(select price,hotel_id from hotel_sku group by hotel_sku.hotel_id order by create_time desc ) b where a.id = b.hotel_id
+  </select>
   <insert id="addhotel" useGeneratedKeys="true" keyProperty="id">
     INSERT	INTO	hotel	(`name`, `address`, `image_url`, `desc`) VALUES	( #{name},  #{address},  #{imageUrl}, #{desc});
   </insert>

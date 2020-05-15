@@ -28,6 +28,11 @@ public class HotelController {
 		return service.list(params);
 	}
 
+	@PostMapping("/hotellist")
+	public List<HotelListVO> Hotellist() {
+		return service.hotelList();
+	}
+
 	@PostMapping("/hotelskulist")
 	public List<HotelSKUVO> hotelskulist(@RequestParam("hotelid") Integer hotelid) {
 		return service.hotelskulist(hotelid);

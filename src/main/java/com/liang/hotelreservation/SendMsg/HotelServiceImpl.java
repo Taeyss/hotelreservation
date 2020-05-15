@@ -50,6 +50,27 @@ public class HotelServiceImpl implements IHotelService {
 	}
 
 	@Override
+	public List<HotelListVO> hotelList() {
+		List<HotelListVO> response = new ArrayList<>();
+		List<HotelListDTO> result = hotelMapper.hotelList();
+		if (!CollectionUtils.isEmpty(result)) {
+			for (HotelListDTO item : result) {
+				HotelListVO hotel = new HotelListVO();
+				hotel.setImageUrl(item.getImageUrl());
+				hotel.setLatitude(item.getLatitude());
+				hotel.setLongitude(item.getLongitude());
+				hotel.setName(item.getName());
+				hotel.setAddress(item.getAddress());
+				hotel.setDesc(item.getDesc());
+				hotel.setId(item.getId());
+				hotel.setPrice(item.getPrice());
+				response.add(hotel);
+			}
+		}
+		return response;
+	}
+
+	@Override
 	public Integer addhotel(AddHotelParams params) {
 		//先新增酒店
 		Integer result = hotelMapper.addhotel(params);

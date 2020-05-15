@@ -9,6 +9,8 @@ public interface IHotelService {
 
 	List<HotelListVO> list(FindHotelParams params);
 
+	List<HotelListVO> hotelList();
+
 	List<HotelSKUVO> hotelskulist(Integer hotelid);
 
 	HotelSKUVO hotelsku(Integer skuid);
