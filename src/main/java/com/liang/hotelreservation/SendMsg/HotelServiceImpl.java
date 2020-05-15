@@ -29,9 +29,9 @@ public class HotelServiceImpl implements IHotelService {
 	private UserMapper userMapper;
 
 	@Override
-	public List<HotelListVO> list() {
+	public List<HotelListVO> list(FindHotelParams params) {
 		List<HotelListVO> response = new ArrayList<>();
-		List<HotelListDTO> result = hotelMapper.list();
+		List<HotelListDTO> result = hotelMapper.list(params);
 		if (!CollectionUtils.isEmpty(result)) {
 			for (HotelListDTO item : result) {
 				HotelListVO hotel = new HotelListVO();

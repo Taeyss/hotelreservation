@@ -9,9 +9,9 @@ public class HotelListVO
 
 	private String name;
 
-	private String longitude;
+	private double longitude;
 
-	private String latitude;
+	private double latitude;
 
 	private String address;
 
@@ -37,19 +37,19 @@ public class HotelListVO
 		this.name = name;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 

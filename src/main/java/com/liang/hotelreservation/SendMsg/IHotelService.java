@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface IHotelService {
 
-	List<HotelListVO> list();
+	List<HotelListVO> list(FindHotelParams params);
 
 	List<HotelSKUVO> hotelskulist(Integer hotelid);
 

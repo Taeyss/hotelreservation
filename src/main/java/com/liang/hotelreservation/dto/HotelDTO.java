@@ -1,6 +1,7 @@
 package com.liang.hotelreservation.dto;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Table(name = "hotel")
 public class HotelDTO {
@@ -9,9 +10,9 @@ public class HotelDTO {
 
     private String name;
 
-    private String longitude;
+    private double longitude;
 
-    private String latitude;
+    private double latitude;
 
     private String address;
 
@@ -51,28 +52,28 @@ public class HotelDTO {
     /**
      * @return longitude
      */
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
     /**
      * @param longitude
      */
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
     /**
      * @return latitude
      */
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
     /**
      * @param latitude
      */
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 

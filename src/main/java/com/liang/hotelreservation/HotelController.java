@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/hotel")
-@CrossOrigin("http://localhost:8081")
+@CrossOrigin("http://localhost:8080")
 public class HotelController {
 
 	@Autowired
@@ -24,8 +24,8 @@ public class HotelController {
 //	}
 
 	@PostMapping("/list")
-	public List<HotelListVO> list() {
-		return service.list();
+	public List<HotelListVO> list(@RequestBody FindHotelParams params) {
+		return service.list(params);
 	}
 
 	@PostMapping("/hotelskulist")
